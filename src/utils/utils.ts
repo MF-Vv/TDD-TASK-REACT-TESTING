@@ -1,0 +1,29 @@
+import { useState } from "react"
+
+export type ItemCategory = "urgent" | "important" | "normal" | "low"
+
+export type Item = {
+  id: string
+  title: string
+  description: string
+  category: ItemCategory
+}
+
+export type ItemWithoutID = Omit<Item, "id">
+
+export const useFlowManager = () => {
+  const [items, setItems] = useState<Item[]>([])
+
+  const handleAddItem = (newItem: ItemWithoutID) => {
+    setItems((prevItems) => [
+      ...prevItems,
+      { ...newItem, id: Date.now().toString() },
+    ])
+  }
+
+  const handleDeleteItem = (id: string) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id))
+  }
+
+  return { items, handleAddItem, handleDeleteItem }
+}
