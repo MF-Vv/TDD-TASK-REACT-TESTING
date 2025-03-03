@@ -34,7 +34,7 @@ npm install
 #### 3. Start the development server:
 
 ```bash
-npm npm run dev
+npm run dev
 ```
 
 #### 4. Run tests (if applicable):
